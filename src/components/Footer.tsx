@@ -8,17 +8,43 @@ import {
   MapPin,
   Phone,
 } from "lucide-react";
-
+import { FaWhatsapp } from "react-icons/fa";
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
-    { icon: MessageCircle, href: "#", label: "WhatsApp", color: "#25D366" },
-    { icon: Send, href: "#", label: "Telegram", color: "#0088cc" },
-    { icon: Facebook, href: "#", label: "Facebook", color: "#1877F2" },
-    { icon: Youtube, href: "#", label: "YouTube", color: "#FF0000" },
-    { icon: Github, href: "#", label: "GitHub", color: "#9ca3af" },
+    {
+      icon: FaWhatsapp,
+      href: "https://wa.me/251929501350", // ✅ Correct WhatsApp link
+      label: "WhatsApp",
+      color: "#25D366",
+    },
+    {
+      icon: Send,
+      href: "https://t.me/haphi_luxury", // ✅ Correct Telegram link
+      label: "Telegram",
+      color: "#0088cc",
+    },
+    {
+      icon: Facebook,
+      href: "https://www.facebook.com/haftu.584",
+      label: "Facebook",
+      color: "#1877F2",
+    },
+    {
+      icon: Youtube,
+      href: "https://www.youtube.com/@luxurydesigndevelop",
+      label: "YouTube",
+      color: "#FF0000",
+    },
+    {
+      icon: Github,
+      href: "https://github.com/Haftush",
+      label: "GitHub",
+      color: "#9ca3af",
+    },
   ];
+
   const contactInfo = [
     {
       icon: Mail,
@@ -99,6 +125,8 @@ export default function Footer() {
                   <a
                     key={social.label}
                     href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="group relative p-3 rounded-xl backdrop-blur-sm border border-white/10 transition-all duration-300 hover:scale-110"
                     aria-label={social.label}
                   >

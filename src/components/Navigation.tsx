@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
-
+import luxurylogo from "../assets/luxurylogo.png";
 interface NavigationProps {
   currentPage: string;
   onNavigate: (page: string) => void;
@@ -31,10 +31,17 @@ export default function Navigation({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div
-            className="flex-shrink-0 cursor-pointer"
+            className="flex items-center space-x-3 cursor-pointer group"
             onClick={() => onNavigate("home")}
           >
-            <h1 className="text-2xl font-bold text-secondary">WebStudio</h1>
+            <img
+              src={luxurylogo}
+              alt="Luxury Logo"
+              className="w-10 h-10 object-contain transition-transform duration-300 group-hover:scale-105"
+            />
+            <h1 className="text-2xl font-bold text-secondary group-hover:text-blue-600 transition-colors duration-300">
+              WebStudio
+            </h1>
           </div>
 
           {/* Desktop Navigation */}
