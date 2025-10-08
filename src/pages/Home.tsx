@@ -206,8 +206,8 @@ export default function Home({ onNavigate }: HomeProps) {
 
           <div className="px-6 sm:px-10 md:px-20 py-12 text-center">
             <h1 className="text-3xl md:text-5xl font-semibold mb-6 leading-snug tracking-tight">
-              Transform Your
-              <span className="relative inline-block bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-gradient-x">
+              Transform Your{" "}
+              <span className="relative inline-block bg-gradient-to-r from-blue-400 via-yellow-400 to-yellow-400 bg-clip-text text-transparent animate-gradient-x">
                 {" "}
                 Digital Presence
               </span>

@@ -19,6 +19,29 @@ export default function Footer() {
     { icon: Youtube, href: "#", label: "YouTube", color: "#FF0000" },
     { icon: Github, href: "#", label: "GitHub", color: "#9ca3af" },
   ];
+  const contactInfo = [
+    {
+      icon: Mail,
+      href: "mailto:haftu.g.mu24@gmail.com",
+      text: "haftu.g.mu24@gmail.com",
+      color: "text-blue-400",
+      hoverColor: "hover:text-white",
+    },
+    {
+      icon: Phone,
+      href: "tel:+251912169209",
+      text: "+251-9-1216-9209 | +251-9-2950-1350",
+      color: "text-green-400",
+      hoverColor: "hover:text-white",
+    },
+    {
+      icon: MapPin,
+      href: "https://maps.google.com/?q=Addis+Ababa,Ethiopia",
+      text: "Addis Ababa, Ethiopia",
+      color: "text-red-400",
+      hoverColor: "hover:text-white",
+    },
+  ];
 
   return (
     <footer className="bg-gradient-to-br from-gray-900 to-primary text-white relative overflow-hidden">
@@ -39,19 +62,26 @@ export default function Footer() {
               digital vision to life. Let’s create something amazing together.
             </p>
 
-            <div className="space-y-3 text-gray-300">
-              <div className="flex justify-center sm:justify-start items-center space-x-3">
-                <Mail size={18} className="text-secondary" />
-                <span>haftu.g.mu24@gmail.com</span>
-              </div>
-              <div className="flex justify-center sm:justify-start items-center space-x-3">
-                <Phone size={18} className="text-secondary" />
-                <span>+251 912-169-209</span>
-              </div>
-              <div className="flex justify-center sm:justify-start items-center space-x-3">
-                <MapPin size={18} className="text-secondary" />
-                <span>Addis Ababa, Ethiopia</span>
-              </div>
+            <div className="space-y-4 mb-8 ml-8 sm:ml-0">
+              {contactInfo.map((contact, index) => {
+                const Icon = contact.icon;
+                return (
+                  <a
+                    key={index}
+                    href={contact.href}
+                    target={contact.icon === MapPin ? "_blank" : "_self"}
+                    rel={contact.icon === MapPin ? "noopener noreferrer" : ""}
+                    className="flex items-center gap-3 text-gray-400 transition-colors group cursor-pointer"
+                  >
+                    <Icon
+                      className={`h-5 w-5 ${contact.color} group-hover:scale-110 transition-transform`}
+                    />
+                    <span className={`${contact.hoverColor} transition-colors`}>
+                      {contact.text}
+                    </span>
+                  </a>
+                );
+              })}
             </div>
           </div>
 
