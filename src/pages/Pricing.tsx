@@ -1,10 +1,13 @@
+import { useState } from "react";
 import { Check, ArrowRight } from "lucide-react";
+import { ChevronDown, ChevronUp } from "lucide-react";
 
 interface PricingProps {
   onNavigate: (page: string) => void;
 }
 
 export default function Pricing({ onNavigate }: PricingProps) {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
   const packages = [
     {
       name: "Basic",
@@ -67,7 +70,32 @@ export default function Pricing({ onNavigate }: PricingProps) {
     { name: "Extended support (30 days)", price: "$100" },
     { name: "E-commerce setup", price: "$200+" },
   ];
+  const faqs = [
+    {
+      question: "What's included in the price?",
+      answer:
+        "Each package includes everything listed in the features. You'll get a fully functional, responsive website optimized for all devices with the specified number of revisions.",
+    },
+    {
+      question: "How long does it take?",
+      answer:
+        "Delivery times vary by package: Basic (1 week), Professional (2 weeks), Premium (3–4 weeks). Rush delivery is available for an additional fee.",
+    },
+    {
+      question: "Do you offer payment plans?",
+      answer:
+        "Yes! For Professional and Premium packages, I offer flexible payment plans. 50% upfront, 50% upon completion. Custom arrangements available for larger projects.",
+    },
+    {
+      question: "What if I need something custom?",
+      answer:
+        "I'm happy to create custom packages! Contact me with your requirements, and I'll provide a tailored quote that fits your specific needs and budget.",
+    },
+  ];
 
+  const toggleFAQ = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
   return (
     <div className="min-h-screen">
       <section className="bg-gradient-to-br from-primary to-primary/90 text-white py-20 px-4">
@@ -162,7 +190,7 @@ export default function Pricing({ onNavigate }: PricingProps) {
       </section>
 
       <section className="py-20 px-4 bg-white">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-primary mb-4">
               Frequently Asked Questions
@@ -172,50 +200,36 @@ export default function Pricing({ onNavigate }: PricingProps) {
             </p>
           </div>
 
-          <div className="space-y-6">
-            <div className="bg-gray-50 p-6 rounded-lg shadow-sm">
-              <h3 className="text-xl font-semibold text-primary mb-2">
-                What's included in the price?
-              </h3>
-              <p className="text-gray-700">
-                Each package includes everything listed in the features. You'll
-                get a fully functional, responsive website optimized for all
-                devices with the specified number of revisions.
-              </p>
-            </div>
+          {/* Responsive Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {faqs.map((faq, index) => (
+              <div
+                key={index}
+                className="bg-gray-50 rounded-2xl shadow-sm border border-gray-200 transition-all"
+              >
+                <button
+                  onClick={() => toggleFAQ(index)}
+                  className="w-full flex justify-between items-center p-6 text-left"
+                >
+                  <h3 className="text-lg font-semibold text-primary">
+                    {faq.question}
+                  </h3>
+                  {openIndex === index ? (
+                    <ChevronUp className="text-primary transition-transform duration-300" />
+                  ) : (
+                    <ChevronDown className="text-primary transition-transform duration-300" />
+                  )}
+                </button>
 
-            <div className="bg-gray-50 p-6 rounded-lg shadow-sm">
-              <h3 className="text-xl font-semibold text-primary mb-2">
-                How long does it take?
-              </h3>
-              <p className="text-gray-700">
-                Delivery times vary by package: Basic (1 week), Professional (2
-                weeks), Premium (3-4 weeks). Rush delivery is available for an
-                additional fee.
-              </p>
-            </div>
-
-            <div className="bg-gray-50 p-6 rounded-lg shadow-sm">
-              <h3 className="text-xl font-semibold text-primary mb-2">
-                Do you offer payment plans?
-              </h3>
-              <p className="text-gray-700">
-                Yes! For Professional and Premium packages, I offer flexible
-                payment plans. 50% upfront, 50% upon completion. Custom
-                arrangements available for larger projects.
-              </p>
-            </div>
-
-            <div className="bg-gray-50 p-6 rounded-lg shadow-sm">
-              <h3 className="text-xl font-semibold text-primary mb-2">
-                What if I need something custom?
-              </h3>
-              <p className="text-gray-700">
-                I'm happy to create custom packages! Contact me with your
-                requirements, and I'll provide a tailored quote that fits your
-                specific needs and budget.
-              </p>
-            </div>
+                <div
+                  className={`overflow-hidden transition-all duration-500 ${
+                    openIndex === index ? "max-h-40 p-6 pt-0" : "max-h-0"
+                  }`}
+                >
+                  <p className="text-gray-700">{faq.answer}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
