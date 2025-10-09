@@ -10,6 +10,7 @@ import {
   ChevronDown,
   ChevronUp,
 } from "lucide-react";
+import { FaWhatsapp, FaTiktok } from "react-icons/fa";
 import { useState } from "react";
 
 interface ContactProps {
@@ -21,24 +22,24 @@ export default function Contact({ onNavigate }: ContactProps) {
 
   const contactMethods = [
     {
-      icon: <MessageCircle className="w-8 h-8" />,
-      title: "WhatsApp",
+      icon: <FaWhatsapp className="w-8 h-8" />,
+      // title: "WhatsApp",
       value: "+251929501350",
       link: "https://wa.me/+251929501350",
       color: "bg-green-500",
     },
     {
       icon: <Send className="w-8 h-8" />,
-      title: "Telegram",
+      // title: "Telegram",
       value: "@haphi_luxury",
       link: "https://t.me/@haphi_luxury",
       color: "bg-blue-500",
     },
     {
       icon: <Mail className="w-8 h-8" />,
-      title: "Email",
-      value: "your@email.com",
-      link: "mailto:your@email.com",
+      // title: "Email",
+      value: "haftu.g.mu24@gmail.com",
+      link: "mailto:haftu.g.mu24@gmail.com",
       color: "bg-red-500",
     },
   ];
@@ -54,6 +55,12 @@ export default function Contact({ onNavigate }: ContactProps) {
       icon: <Youtube className="w-6 h-6" />,
       name: "YouTube",
       link: "https://youtube.com/@luxurydesigndevelop",
+      color: "hover:text-red-600",
+    },
+    {
+      icon: <FaTiktok className="w-6 h-6" />,
+      name: "Tiktok",
+      link: "https://tiktok.com/@haphi_luxury",
       color: "hover:text-red-600",
     },
     {
@@ -143,9 +150,9 @@ export default function Contact({ onNavigate }: ContactProps) {
                 >
                   {method.icon}
                 </div>
-                <h3 className="text-2xl font-bold text-primary mb-2">
+                {/* <h3 className="text-2xl font-bold text-primary mb-2">
                   {method.title}
-                </h3>
+                </h3> */}
                 <p className="text-gray-600 text-lg">{method.value}</p>
               </a>
             ))}
@@ -220,7 +227,7 @@ export default function Contact({ onNavigate }: ContactProps) {
                 rel="noopener noreferrer"
                 className="bg-white/10 backdrop-blur-sm text-white px-10 py-4 rounded-lg font-bold text-lg hover:bg-white/20 transition-all border border-white/30 inline-flex items-center justify-center gap-2"
               >
-                <MessageCircle className="w-5 h-5" />
+                <FaWhatsapp className="w-5 h-5" />
                 Chat on WhatsApp
               </a>
             </div>

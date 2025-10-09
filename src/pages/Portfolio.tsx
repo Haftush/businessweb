@@ -434,7 +434,7 @@ export default function Portfolio() {
                     onClick={closeModal}
                     className="p-2 hover:bg-gray-100 dark:hover:bg-slate-800 rounded-full transition-colors"
                   >
-                    <X className="w-6 h-6" />
+                    <X className="w-6 h-6 text-white" />
                   </button>
                 </div>
               </DialogHeader>
