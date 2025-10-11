@@ -6,6 +6,7 @@ import {
   SendHorizonal,
   X,
 } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 
 // ✅ Strongly typed form data interface
@@ -350,7 +351,7 @@ export default function Order() {
                   onClick={() => handleSend("whatsapp")}
                   className="flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-5 py-2 rounded-lg"
                 >
-                  <MessageCircle className="w-5 h-5" /> WhatsApp
+                  <FaWhatsapp className="w-5 h-5" /> WhatsApp
                 </button>
                 <button
                   onClick={() => handleSend("telegram")}
