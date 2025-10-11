@@ -158,6 +158,7 @@ export default function Footer() {
                   <input
                     type="email"
                     placeholder="Enter your email"
+                    required
                     className="flex-1 w-full px-4 py-2.5 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all duration-300"
                   />
                   <button className="w-full sm:w-auto px-6 py-2.5 bg-gradient-to-r from-secondary to-accent text-white rounded-lg font-medium shadow-md hover:from-secondary/90 hover:to-accent/90 hover:shadow-lg transform hover:scale-[1.03] transition-all duration-300">

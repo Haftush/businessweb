@@ -227,7 +227,7 @@ export default function Home({ onNavigate }: HomeProps) {
               onClick={() => onNavigate("order")}
               className="group bg-secondary text-primary px-8 py-4 rounded-xl font-bold text-lg hover:bg-secondary/90 transition-all transform hover:scale-105 flex items-center justify-center gap-3 shadow-2xl shadow-secondary/25"
             >
-              <span>Start Your Project</span>
+              <span>Order Your Project</span>
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </button>
             <button
@@ -504,7 +504,7 @@ export default function Home({ onNavigate }: HomeProps) {
               onClick={() => onNavigate("order")}
               className="group bg-secondary text-white px-8 py-4 rounded-lg font-semibold text-base md:text-lg hover:bg-secondary/90 transition-all duration-300 transform hover:scale-105 inline-flex items-center gap-2 shadow-lg"
             >
-              <span>Start Your Project</span>
+              <span>Order Your Projectt</span>
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </button>
 

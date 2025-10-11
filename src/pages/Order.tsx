@@ -117,7 +117,7 @@ export default function Order() {
                   value={formData.name}
                   onChange={handleChange}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition-all"
-                  placeholder="John Doe"
+                  placeholder="Your FullName"
                 />
               </div>
 
@@ -136,7 +136,7 @@ export default function Order() {
                   value={formData.email}
                   onChange={handleChange}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition-all"
-                  placeholder="john@example.com"
+                  placeholder="your@example.com"
                 />
               </div>
             </div>
@@ -156,7 +156,7 @@ export default function Order() {
                 value={formData.whatsapp}
                 onChange={handleChange}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition-all"
-                placeholder="+1234567890"
+                placeholder="+251929501350"
               />
             </div>
 
