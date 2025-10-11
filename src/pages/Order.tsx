@@ -40,20 +40,33 @@ export default function Order() {
       [e.target.name]: e.target.value,
     });
   };
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Format the order message
-    const message = `Hello! I'd like to order a website.%0A%0AName: ${formData.name}%0AEmail: ${formData.email}%0AWhatsApp: ${formData.whatsapp}%0AService Type: ${formData.serviceType}%0ABudget: ${formData.budget}%0A%0ADescription:%0A${formData.description}`;
+    const message = encodeURIComponent(
+      `Hello! I'd like to order a website.\n\n` +
+        `Name: ${formData.name}\n` +
+        `Email: ${formData.email}\n` +
+        `WhatsApp: ${formData.whatsapp}\n` +
+        `Service Type: ${formData.serviceType}\n` +
+        `Budget: ${formData.budget}\n\n` +
+        `Description:\n${formData.description}`
+    );
 
-    // Your fixed WhatsApp number
-    const whatsappNumber = "251929501350"; // no + sign here for wa.me link
+    // Your fixed WhatsApp number (no + sign)
+    const whatsappNumber = "251929501350";
 
-    // Open WhatsApp chat with your number
+    // Your Telegram username or link (choose one)
+    const telegramUsername = "@haphi_luxury"; // e.g. HaftuGirmay
+    const telegramLink = `https://t.me/${telegramUsername}?text=${message}`;
+
+    // Open WhatsApp
     window.open(`https://wa.me/${whatsappNumber}?text=${message}`, "_blank");
 
-    // Reset form after sending
+    // Open Telegram
+    window.open(telegramLink, "_blank");
+
+    // Reset form
     setFormData({
       name: "",
       email: "",
