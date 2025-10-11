@@ -50,7 +50,14 @@ export default function Order() {
       "+251" + formData.whatsapp.replace(/\D/g, "").replace(/^251/, "");
 
     window.open(`https://wa.me/${whatsappNumber}?text=${message}`, "_blank");
-
+    setFormData({
+      name: "",
+      email: "",
+      whatsapp: "",
+      serviceType: "",
+      description: "",
+      budget: "",
+    });
     setSubmitted(true);
   };
 
@@ -86,7 +93,7 @@ export default function Order() {
       <section className="bg-gradient-to-br from-primary to-primary/90 text-white py-20 px-4">
         <div className="max-w-7xl mx-auto text-center">
           <h1 className="text-5xl md:text-6xl font-bold mb-6">
-            Order Your Website
+            Order Your Project
           </h1>
           <p className="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto">
             Fill out the form below and I'll get started on bringing your vision
