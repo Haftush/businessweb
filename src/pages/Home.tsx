@@ -15,7 +15,7 @@ import {
   TrendingUp,
   PenTool,
 } from "lucide-react";
-import { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState } from "react";
 
 interface HomeProps {
   onNavigate: (page: string) => void;
@@ -288,28 +288,38 @@ export default function Home({ onNavigate }: HomeProps) {
             {services.map((service, index) => (
               <div
                 key={index}
-                className="group relative bg-gradient-to-br from-white to-gray-50 p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-4 border border-gray-100 hover:border-primary/20"
+                className="group relative bg-gradient-to-br from-white to-gray-50 p-6 sm:p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-4 border border-gray-100 hover:border-primary/20"
               >
-                {/* Hover Effect */}
+                {/* Hover Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                 <div className="relative z-10">
-                  <div className="text-secondary mb-6 transform group-hover:scale-110 transition-transform duration-500">
-                    {service.icon}
+                  {/* Icon + Title Flex Section */}
+                  <div className="flex items-center gap-3 mb-4 sm:flex-col sm:items-start sm:gap-0">
+                    <div className="text-secondary">
+                      {React.cloneElement(service.icon as React.ReactElement, {
+                        className:
+                          "w-10 h-10 sm:w-16 sm:h-16 text-secondary flex-shrink-0 transition-all duration-300 transform group-hover:scale-110",
+                      })}
+                    </div>
+                    <h3 className="text-xl sm:text-2xl font-bold text-gray-900">
+                      {service.title}
+                    </h3>
                   </div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                    {service.title}
-                  </h3>
-                  <p className="text-gray-600 mb-6 leading-relaxed">
+
+                  {/* Description */}
+                  <p className="text-gray-600 text-sm sm:text-base mb-6 leading-relaxed">
                     {service.description}
                   </p>
+
+                  {/* Feature List */}
                   <ul className="space-y-2">
                     {service.features.map((feature, idx) => (
                       <li
                         key={idx}
-                        className="flex items-center gap-2 text-sm text-gray-500"
+                        className="flex items-center gap-2 text-gray-600 text-sm sm:text-base"
                       >
-                        <CheckCircle className="w-4 h-4 text-secondary" />
+                        <CheckCircle className="w-4 h-4 text-secondary flex-shrink-0" />
                         {feature}
                       </li>
                     ))}
