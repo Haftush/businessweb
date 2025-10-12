@@ -1,12 +1,6 @@
 import { useState } from "react";
-import {
-  Send,
-  CheckCircle,
-  MessageCircle,
-  SendHorizonal,
-  X,
-} from "lucide-react";
-import { FaWhatsapp } from "react-icons/fa";
+import { Send, CheckCircle, SendHorizonal, X, Mail } from "lucide-react";
+import { FaWhatsapp, FaTelegramPlane } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 
 // ✅ Strongly typed form data interface
@@ -20,7 +14,7 @@ interface FormData {
 }
 
 // ✅ Union type for supported messaging platforms
-type Platform = "whatsapp" | "telegram";
+type Platform = "whatsapp" | "telegram" | "email";
 
 export default function Order() {
   const [formData, setFormData] = useState<FormData>({
@@ -53,7 +47,7 @@ export default function Order() {
     "Custom Budget",
   ];
 
-  // ✅ Handles text, textarea, and select inputs safely
+  // ✅ Handles all input types safely
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
@@ -63,36 +57,42 @@ export default function Order() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // ✅ Correctly typed form submission
+  // ✅ Form submission
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
 
     const msg = encodeURIComponent(
-      `Hello! I'd like to order a website.\n\n` +
-        `Name: ${formData.name}\n` +
-        `Email: ${formData.email}\n` +
-        `WhatsApp: ${formData.whatsapp}\n` +
-        `Service Type: ${formData.serviceType}\n` +
-        `Budget: ${formData.budget}\n\n` +
-        `Description:\n${formData.description}`
+      `Hello! I'd like to order a project.\n\n` +
+        `👤 Name: ${formData.name}\n` +
+        `📧 Email: ${formData.email}\n` +
+        `📱 WhatsApp: ${formData.whatsapp}\n` +
+        `💼 Service Type: ${formData.serviceType}\n` +
+        `💰 Budget: ${formData.budget}\n\n` +
+        `📝 Description:\n${formData.description}`
     );
 
     setMessage(msg);
     setShowOptions(true);
   };
 
-  // ✅ Type-safe send handler
+  // ✅ Platform send handler
   const handleSend = (platform: Platform): void => {
     const whatsappNumber = "251929501350";
-    const telegramUsername = "haphi_luxury"; // remove '@'
+    const telegramUsername = "haphi_luxury";
+    const emailReceiver = "haftuluxury@gmail.com"; // 👈 your email
 
     if (platform === "whatsapp") {
       window.open(`https://wa.me/${whatsappNumber}?text=${message}`, "_blank");
-    } else {
+    } else if (platform === "telegram") {
       window.open(`https://t.me/${telegramUsername}?text=${message}`, "_blank");
+    } else if (platform === "email") {
+      window.open(
+        `mailto:${emailReceiver}?subject=New Project Order&body=${message}`,
+        "_blank"
+      );
     }
 
-    // Reset the form
+    // Reset form
     setFormData({
       name: "",
       email: "",
@@ -105,7 +105,7 @@ export default function Order() {
     setSubmitted(true);
   };
 
-  // ✅ Confirmation screen
+  // ✅ Confirmation Screen
   if (submitted) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
@@ -124,8 +124,8 @@ export default function Order() {
             Order Submitted!
           </h2>
           <p className="text-gray-600 mb-6">
-            Thank you for your order request. I’ll review your requirements and
-            get back to you shortly via your selected platform.
+            Thank you for your order request. I’ll contact you soon via your
+            selected platform.
           </p>
           <button
             onClick={() => setSubmitted(false)}
@@ -138,7 +138,7 @@ export default function Order() {
     );
   }
 
-  // ✅ Main Form Layout
+  // ✅ Main Form UI
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -266,7 +266,6 @@ export default function Order() {
               />
             </div>
 
-            {/* Submit Button */}
             <button
               type="submit"
               className="w-full bg-secondary text-primary px-8 py-4 rounded-lg font-bold text-lg hover:bg-secondary/90 transition-all flex items-center justify-center gap-2"
@@ -275,46 +274,6 @@ export default function Order() {
               <Send className="w-5 h-5" />
             </button>
           </form>
-        </div>
-      </section>
-
-      {/* Step Info Section */}
-      <section className="py-20 px-4 bg-gray-50">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-primary text-center mb-12">
-            What Happens Next?
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                num: 1,
-                title: "Submit Form",
-                text: "Fill out the order form with your project details",
-              },
-              {
-                num: 2,
-                title: "Review & Quote",
-                text: "I’ll review your requirements and send a detailed quote",
-              },
-              {
-                num: 3,
-                title: "Start Building",
-                text: "Once approved, I’ll start working on your project",
-              },
-            ].map((step) => (
-              <div key={step.num} className="text-center">
-                <div className="bg-secondary/20 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                  <span className="text-3xl font-bold text-secondary">
-                    {step.num}
-                  </span>
-                </div>
-                <h3 className="text-xl font-bold text-primary mb-2">
-                  {step.title}
-                </h3>
-                <p className="text-gray-600">{step.text}</p>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -344,20 +303,26 @@ export default function Order() {
                 Choose where to send your order
               </h2>
               <p className="text-gray-500 mb-6 text-sm">
-                Select WhatsApp or Telegram to complete your order submission.
+                Select WhatsApp, Telegram, or Email to complete your submission.
               </p>
-              <div className="flex justify-center gap-4">
+              <div className="flex flex-col gap-3">
                 <button
                   onClick={() => handleSend("whatsapp")}
-                  className="flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-5 py-2 rounded-lg"
+                  className="flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white px-5 py-2 rounded-lg"
                 >
                   <FaWhatsapp className="w-5 h-5" /> WhatsApp
                 </button>
                 <button
                   onClick={() => handleSend("telegram")}
-                  className="flex items-center gap-2 bg-blue-500 hover:bg-blue-600 text-white px-5 py-2 rounded-lg"
+                  className="flex items-center justify-center gap-2 bg-blue-500 hover:bg-blue-600 text-white px-5 py-2 rounded-lg"
                 >
-                  <SendHorizonal className="w-5 h-5" /> Telegram
+                  <FaTelegramPlane className="w-5 h-5" /> Telegram
+                </button>
+                <button
+                  onClick={() => handleSend("email")}
+                  className="flex items-center justify-center gap-2 bg-red-500 hover:bg-red-600 text-white px-5 py-2 rounded-lg"
+                >
+                  <Mail className="w-5 h-5" /> Email
                 </button>
               </div>
             </motion.div>
