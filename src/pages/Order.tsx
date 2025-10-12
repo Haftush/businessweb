@@ -79,7 +79,7 @@ export default function Order() {
   const handleSend = (platform: Platform): void => {
     const whatsappNumber = "251929501350";
     const telegramUsername = "haphi_luxury";
-    const emailReceiver = "haftuluxury@gmail.com"; // 👈 your email
+    const emailReceiver = "haftu.g.mu24@gmail.com"; // 👈 your email
 
     if (platform === "whatsapp") {
       window.open(`https://wa.me/${whatsappNumber}?text=${message}`, "_blank");
@@ -195,7 +195,7 @@ export default function Order() {
             {/* WhatsApp */}
             <div className="mb-6">
               <label className="block text-sm font-semibold text-gray-700 mb-2">
-                WhatsApp Number *
+                Phone Number *
               </label>
               <input
                 type="tel"
@@ -281,50 +281,93 @@ export default function Order() {
       <AnimatePresence>
         {showOptions && (
           <motion.div
-            className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
+            className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50 p-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
             <motion.div
-              initial={{ scale: 0.8 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.8 }}
-              transition={{ duration: 0.3 }}
-              className="bg-white rounded-2xl shadow-2xl p-8 text-center max-w-sm w-full relative"
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+              className="relative bg-gradient-to-br from-white/90 to-gray-100/90 dark:from-gray-900/90 dark:to-gray-800/90 backdrop-blur-xl border border-white/30 shadow-2xl rounded-3xl w-full max-w-md p-8 sm:p-10 text-center"
             >
+              {/* Close Button */}
               <button
                 onClick={() => setShowOptions(false)}
-                className="absolute top-3 right-3 text-gray-500 hover:text-gray-800"
+                className="absolute top-4 right-4 text-gray-600 hover:text-red-500 transition-all duration-200"
               >
                 <X className="w-6 h-6" />
               </button>
-              <h2 className="text-xl font-semibold mb-4 text-gray-800">
-                Choose where to send your order
-              </h2>
-              <p className="text-gray-500 mb-6 text-sm">
-                Select WhatsApp, Telegram, or Email to complete your submission.
-              </p>
-              <div className="flex flex-col gap-3">
-                <button
+
+              {/* Title */}
+              <motion.h2
+                initial={{ y: -10, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                className="text-2xl font-extrabold text-gray-800 dark:text-white mb-3"
+              >
+                Send Your Order Via
+              </motion.h2>
+              <motion.p
+                initial={{ y: -10, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.1 }}
+                className="text-gray-600 dark:text-gray-300 text-sm mb-8"
+              >
+                Choose your preferred communication platform below.
+              </motion.p>
+
+              {/* Platform Buttons */}
+              <motion.div
+                className="grid grid-cols-1 sm:grid-cols-3 gap-4"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.2 }}
+              >
+                {/* WhatsApp */}
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                   onClick={() => handleSend("whatsapp")}
-                  className="flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white px-5 py-2 rounded-lg"
+                  className="flex flex-col items-center justify-center gap-2 bg-gradient-to-br from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold py-4 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300"
                 >
-                  <FaWhatsapp className="w-5 h-5" /> WhatsApp
-                </button>
-                <button
+                  <FaWhatsapp className="w-7 h-7" />
+                  <span className="text-sm">WhatsApp</span>
+                </motion.button>
+
+                {/* Telegram */}
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                   onClick={() => handleSend("telegram")}
-                  className="flex items-center justify-center gap-2 bg-blue-500 hover:bg-blue-600 text-white px-5 py-2 rounded-lg"
+                  className="flex flex-col items-center justify-center gap-2 bg-gradient-to-br from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold py-4 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300"
                 >
-                  <FaTelegramPlane className="w-5 h-5" /> Telegram
-                </button>
-                <button
+                  <FaTelegramPlane className="w-7 h-7" />
+                  <span className="text-sm">Telegram</span>
+                </motion.button>
+
+                {/* Email */}
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                   onClick={() => handleSend("email")}
-                  className="flex items-center justify-center gap-2 bg-red-500 hover:bg-red-600 text-white px-5 py-2 rounded-lg"
+                  className="flex flex-col items-center justify-center gap-2 bg-gradient-to-br from-pink-500 to-red-500 hover:from-red-500 hover:to-pink-600 text-white font-semibold py-4 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300"
                 >
-                  <Mail className="w-5 h-5" /> Email
-                </button>
-              </div>
+                  <Mail className="w-7 h-7" />
+                  <span className="text-sm">Email</span>
+                </motion.button>
+              </motion.div>
+
+              {/* Footer Text */}
+              <motion.p
+                initial={{ y: 10, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.3 }}
+                className="mt-8 text-xs text-gray-500 dark:text-gray-400"
+              >
+                Your information will remain private and secure.
+              </motion.p>
             </motion.div>
           </motion.div>
         )}
