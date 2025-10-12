@@ -65,7 +65,7 @@ export default function Order() {
       `Hello! I'd like to order a project.\n\n` +
         `👤 Name: ${formData.name}\n` +
         `📧 Email: ${formData.email}\n` +
-        `📱 WhatsApp: ${formData.whatsapp}\n` +
+        `📱 Phone Number: ${formData.whatsapp}\n` +
         `💼 Service Type: ${formData.serviceType}\n` +
         `💰 Budget: ${formData.budget}\n\n` +
         `📝 Description:\n${formData.description}`
@@ -287,40 +287,45 @@ export default function Order() {
             exit={{ opacity: 0 }}
           >
             <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
+              initial={{ scale: 0.85, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
-              transition={{ duration: 0.4, ease: "easeOut" }}
-              className="relative bg-gradient-to-br from-white/90 to-gray-100/90 dark:from-gray-900/90 dark:to-gray-800/90 backdrop-blur-xl border border-white/30 shadow-2xl rounded-3xl w-full max-w-md p-8 sm:p-10 text-center"
+              exit={{ scale: 0.85, opacity: 0 }}
+              transition={{ duration: 0.35, ease: "easeOut" }}
+              className="relative bg-gradient-to-br from-white/90 to-gray-100/90 
+                   dark:from-gray-900/90 dark:to-gray-800/90 backdrop-blur-xl 
+                   border border-white/30 shadow-2xl rounded-3xl 
+                   w-full max-w-sm sm:max-w-md p-6 sm:p-10 text-center"
             >
               {/* Close Button */}
               <button
                 onClick={() => setShowOptions(false)}
-                className="absolute top-4 right-4 text-gray-600 hover:text-red-500 transition-all duration-200"
+                className="absolute top-3 right-3 text-gray-600 hover:text-red-500 transition-all duration-200"
               >
-                <X className="w-6 h-6" />
+                <X className="w-5 h-5 sm:w-6 sm:h-6" />
               </button>
 
               {/* Title */}
               <motion.h2
                 initial={{ y: -10, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                className="text-2xl font-extrabold text-gray-800 dark:text-white mb-3"
+                className="text-lg sm:text-2xl font-extrabold text-gray-800 dark:text-white mb-2 sm:mb-3"
               >
                 Send Your Order Via
               </motion.h2>
+
+              {/* Subtitle */}
               <motion.p
                 initial={{ y: -10, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.1 }}
-                className="text-gray-600 dark:text-gray-300 text-sm mb-8"
+                className="text-gray-600 dark:text-gray-300 text-xs sm:text-sm mb-6 sm:mb-8 leading-relaxed"
               >
                 Choose your preferred communication platform below.
               </motion.p>
 
               {/* Platform Buttons */}
               <motion.div
-                className="grid grid-cols-1 sm:grid-cols-3 gap-4"
+                className="grid grid-cols-3 gap-3 sm:gap-4"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.2 }}
@@ -330,10 +335,13 @@ export default function Order() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => handleSend("whatsapp")}
-                  className="flex flex-col items-center justify-center gap-2 bg-gradient-to-br from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold py-4 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300"
+                  className="flex flex-col items-center justify-center gap-1 sm:gap-2 bg-gradient-to-br 
+                       from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 
+                       text-white font-semibold py-3 sm:py-4 rounded-2xl shadow-md 
+                       hover:shadow-lg transition-all duration-300"
                 >
-                  <FaWhatsapp className="w-7 h-7" />
-                  <span className="text-sm">WhatsApp</span>
+                  <FaWhatsapp className="w-5 h-5 sm:w-7 sm:h-7" />
+                  <span className="text-xs sm:text-sm">WhatsApp</span>
                 </motion.button>
 
                 {/* Telegram */}
@@ -341,10 +349,13 @@ export default function Order() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => handleSend("telegram")}
-                  className="flex flex-col items-center justify-center gap-2 bg-gradient-to-br from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold py-4 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300"
+                  className="flex flex-col items-center justify-center gap-1 sm:gap-2 bg-gradient-to-br 
+                       from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 
+                       text-white font-semibold py-3 sm:py-4 rounded-2xl shadow-md 
+                       hover:shadow-lg transition-all duration-300"
                 >
-                  <FaTelegramPlane className="w-7 h-7" />
-                  <span className="text-sm">Telegram</span>
+                  <FaTelegramPlane className="w-5 h-5 sm:w-7 sm:h-7" />
+                  <span className="text-xs sm:text-sm">Telegram</span>
                 </motion.button>
 
                 {/* Email */}
@@ -352,10 +363,13 @@ export default function Order() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => handleSend("email")}
-                  className="flex flex-col items-center justify-center gap-2 bg-gradient-to-br from-pink-500 to-red-500 hover:from-red-500 hover:to-pink-600 text-white font-semibold py-4 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300"
+                  className="flex flex-col items-center justify-center gap-1 sm:gap-2 bg-gradient-to-br 
+                       from-pink-500 to-red-500 hover:from-red-500 hover:to-pink-600 
+                       text-white font-semibold py-3 sm:py-4 rounded-2xl shadow-md 
+                       hover:shadow-lg transition-all duration-300"
                 >
-                  <Mail className="w-7 h-7" />
-                  <span className="text-sm">Email</span>
+                  <Mail className="w-5 h-5 sm:w-7 sm:h-7" />
+                  <span className="text-xs sm:text-sm">Email</span>
                 </motion.button>
               </motion.div>
 
@@ -364,7 +378,7 @@ export default function Order() {
                 initial={{ y: 10, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.3 }}
-                className="mt-8 text-xs text-gray-500 dark:text-gray-400"
+                className="mt-6 sm:mt-8 text-[10px] sm:text-xs text-gray-500 dark:text-gray-400"
               >
                 Your information will remain private and secure.
               </motion.p>
