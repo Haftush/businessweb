@@ -32,7 +32,7 @@ export default function Contact({ onNavigate }: ContactProps) {
       icon: <Send className="w-8 h-8" />,
       // title: "Telegram",
       value: "@haphi_luxury",
-      link: "https://t.me/@haphi_luxury",
+      link: "https://t.me/haphi_luxury",
       color: "bg-blue-500",
     },
     {
